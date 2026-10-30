@@ -1,6 +1,6 @@
 {
   "name": "@kira905/dsh-closure-tools",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Read-only diagnostics for host-upgrade breakage: plugin decoupling checks (R1-R5) and dependency-closure link verification/repair. Zero npm dependencies.",
   "keywords": [
     "dsh",
