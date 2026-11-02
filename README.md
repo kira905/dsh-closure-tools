@@ -1,5 +1,30 @@
 # @kira905/dsh-closure-tools —— 宿主升级体检工具组
 
+> ### 这是什么
+> **插件解耦与依赖闭包的两件体检器**（只读）。
+>
+> ### 它解决什么
+> 自研插件最容易烂在「悄悄依赖了宿主内部」：今天能跑，宿主一升级就崩，而且崩得莫名其妙。这里把纪律做成可执行的两条判据 —— ① **解耦检查 R1–R5**（运行时 import / 依赖面 / 登记 / 裸字面量 / 适配层副本）② **依赖闭包链路核验与修复**（`node_modules` 里那些指向错误目录的链接，是"装上了但跑不起来"的头号原因）。
+>
+> ### 一条命令跑起来
+> ```powershell
+> npm i -g @kira905/dsh-closure-tools
+> check-decoupling --root <你的插件目录>
+> ```
+>
+> ### 先看它长什么样（真实输出）
+> ```text
+> usage: check-decoupling.mjs [选项]
+>   自研插件「解耦纪律」检查：R1 运行时 import / R2 依赖面 / R3 登记提醒 / R4 裸字面量 / R5 适配层副本。
+>   只读、幂等、零第三方依赖（node >= 18）。规则表见 README §3。
+>   --root <dir>              扫描根
+>   --json [path]             额外写 JSON 报告（默认不写文件）
+> ```
+>
+> 只读、幂等，不会改动被扫的东西。
+
+---
+
 > **本仓是命令行工具，不挂宿主界面，不需要 `dsh.bundle`、不需要写 `cordis.patch.yml`。** 装它 = `npm i -g @kira905/dsh-closure-tools`（或 `npx -p @kira905/dsh-closure-tools closure-check`）。装进 profile 也对，但那条 `declares no dsh.bundle` 警告是**正常现象**，不是故障。
 
 ## 装完自检（三条只读验法）
